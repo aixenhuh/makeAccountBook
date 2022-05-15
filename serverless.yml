@@ -1,0 +1,28 @@
+service: makeaccountbook
+
+frameworkVersion: '3'
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    lambdaPort: 4001
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-northeast-2
+
+functions:
+  api:
+    handler: handler.index
+
+    events:
+      - http:
+          path: /api/add
+          method: post
+      - http:
+          path: /api/getData
+          method: get
+
+plugins:
+  - serverless-offline
